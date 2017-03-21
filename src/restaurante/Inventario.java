@@ -15,11 +15,29 @@ public class Inventario {
     private ArrayList<Producto> p;
     private Gastos g;
     private Venta v;
+
+    public Gastos getG() {
+        return g;
+    }
+
+    public void setG(Gastos g) {
+        this.g = g;
+    }
+
+    public Venta getV() {
+        return v;
+    }
+
+    public void setV(Venta v) {
+        this.v = v;
+    }
     private int Total2=0;
     private int Total=0;
     
     public Inventario(){
         this.p = new ArrayList<>();
+        this.v = new Venta(3);
+        this.g = new Gastos();
     }
 
 
@@ -32,18 +50,17 @@ public class Inventario {
                b.setCantidad(b.getCantidad() + cant);
                Total+=cant*b.getCosto_neto();
                g.setGastos_Compras(Total);
-               
            }   
         }  
     }
+    
         
-    public void subbCantidad(String nombre,int cant){
+    public void subbCantidad(String nombre,int cant){;
          for(Producto b : this.p){
            if(b.getNombre().equals(nombre)){
                b.setCantidad(b.getCantidad() - cant);
-               System.out.println(b.getCosto_vendido());
                Total2+=cant*b.getCosto_vendido();
-               v.setDinero_Obtenido(Total2);
+               this.v.setDinero_Obtenido(this.Total2);
            }   
         }  
     } 

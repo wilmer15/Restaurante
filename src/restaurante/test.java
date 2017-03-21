@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package restaurante;
+import java.util.*;
 
 /**
  *
@@ -11,6 +12,7 @@ package restaurante;
  */
 public class test {
     public static void main(String[] agrs ){
+        Scanner leer = new Scanner(System.in);
         Producto p1 = new Producto();
         p1.setCosto_neto(5000);
         p1.setCosto_vendido(9000);
@@ -65,19 +67,57 @@ public class test {
         emp2.setNombre("Dario");
         emp2.setPrima_Diario(6000);
         emp2.setSueldo_Diario(12000);
-        
+
         Gastos g = new Gastos();
         g.addEmpleado(emp);
         g.addEmpleado(emp2);
-        
+
+            
         Gastos_Local gastosl = new Gastos_Local();
         gastosl.setArriendo_dia(20000);
         gastosl.setImpuestos_dia(15000);
         gastosl.setServicio_dia(14000);
-        
+        System.out.println("Gastos Fijos " + g.Gastost_d(gastosl));
         
         Venta v = new Venta();
-        v.Vender();   
-        System.out.println("Gastos Dia  " + g.Gastost_d());
+        v.getI().addProducto(p1);
+        v.getI().addProducto(p2);
+        v.getI().addProducto(p3);
+        
+        
+        
+        
+        int cont=1;
+        while(cont==1){
+        System.out.println("Solo se encuentran Disponibles los productos \nPaisa\nEspecial\nCorriente");
+        System.out.println("Digite \n 1- Seguir Vendiendo o Comprando \n 2-Salir");
+         
+         cont=leer.nextInt();
+          if(cont==1){
+      
+        int cont3=1;
+        while(cont3==1){
+        System.out.println("Digite \n 1- Vender \n 2-Salir");
+         cont3=leer.nextInt();
+          if(cont3==1){
+              v.Vender();  
+          }
+          cont3=0;
+        }
+        
+        int cont4=1;
+        while(cont4==1){
+        System.out.println("Digite \n 1- Comprar \n 2-Salir");
+         cont4=leer.nextInt();
+          if(cont4==1){
+             v.Comprar();
+          }
+          cont4=0;
+        }   
+        System.out.println("Relacion de productos vendidos \n Con productos Comprados  " + v.getGanancia());
+        System.out.println("Ganancia" + (v.getGanancia() - g.Gastost_d(gastosl)));
+        
+          }
+        }
     }
 }

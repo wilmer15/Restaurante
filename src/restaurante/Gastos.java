@@ -14,6 +14,7 @@ public class Gastos {
     private int Gasto_anual;
     private int Gasto_dia;
     private int Gastos_Compras;
+    private Scanner leer= new Scanner(System.in);
     
     private ArrayList<Empleado> E;
     
@@ -61,12 +62,12 @@ public class Gastos {
       this.E.add(e);
     }
     
-    public int Gastost_d(){
+    public int Gastost_d(Gastos_Local gl){
         int Total=0;
         for(Empleado p : E){
             Total+=p.getSueldo_Diario() + p.getPrima_Diario();           
         }
-        Total+= g.getArriendo_dia() + g.getImpuestos_dia() + g.getServicio_dia();
+        Total+= gl.getArriendo_dia() + gl.getImpuestos_dia() + gl.getServicio_dia();
         Total+=this.getGastos_Compras();
         this.setGasto_dia(Total);
         return Total;
